@@ -40,7 +40,7 @@ More configurations are available and can be found [here](https://www.elastic.co
 #### Task definition
 
 You can also find in the `.aws` folder an example of a target task definition template for our filebeat image.
-In order for filebeat to access the los properly, you should make sure of the following:
+In order for filebeat to access the logs properly, you should make sure of the following:
 
 ##### Volumes
 
@@ -48,7 +48,7 @@ We create two volumes
 In our case, we called them logs and sock and assign them to the following path
 - Volume logs: /var/lib/docker/containers
 - Volume sock: /var/run/docker.sock
-Those volumes corresponds to some path on the ECS instance.
+Those volumes corresponds to some paths on the ECS instance.
 
 We then mount those volumes inside our filebeat container.
 This is done in our task configuration (or through the AWS task definition builder)
@@ -94,4 +94,4 @@ $ docker buildx build --platform linux/arm64/v8,linux/amd64 -t {{inser_your_dock
 ### Gotchas
 
 It could happen that your filebeat container does not have access to `/var/run/docker.sock` on the ECS instance. 
-To fix that, you can assign the proper role to your task.
+To fix that, you should assign the proper role to your task.
